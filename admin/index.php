@@ -32,7 +32,7 @@
 
         <nav>
             <a class="nav-link" href="#"><span>⚙</span> Settings</a>
-            <a class="nav-link" href="#"><span>❓</span> Help Center</a>
+            <a class="nav-link" href="#"><span></span>log out</a>
         </nav>
 
         <div class="sidebar-bottom">
