@@ -1,43 +1,44 @@
-
+<?php include('db.php') ?>
 <?php
-session_start();
-include "db.php";
+              if (isset($_POST['login'])) {
+                extract($_POST);
+                $password = sha1($password);
 
-$error = "";
+               
+                echo "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+                $result = $conn->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $row = $result->fetch_assoc();
 
-    $email = $_POST["email"];
-    $password = $_POST["password"];
 
-    $sql = "SELECT * FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
+                if ($result->num_rows > 0) {
+                  session_start();
+                  $_SESSION['email'] = $email;
+                  $_SESSION['name'] = $row['name'];
+                  $_SESSION['role'] = $row['role'];
 
-    $result = $stmt->get_result();
 
-    if ($result->num_rows == 1) {
-
-        $user = $result->fetch_assoc();
-
-        if (password_verify($password, $user["password"])) {
-
-            $_SESSION["user_id"] = $user["id"];
-            $_SESSION["email"] = $user["email"];
-
-            header("Location: dashboard.php");
-            exit();
-
-        } else {
-            $error = "Incorrect password!";
-        }
-
-    } else {
-        $error = "Email not found!";
-    }
-}
-?>
+                  if ($row['role'] == 'admin') {
+                    $_SESSION['url'] = 'admin_dashboard.php';
+                    header("Location: admin/admin_dashboard.php");
+                  } else if ($row['role'] == 'employer') {
+                    $_SESSION['url'] = 'employer_dashboard.php';
+                    header("Location: admin/employer_dashboard.php");
+                  } else if ($row['role'] == 'seeker') {
+                    $_SESSION['url'] = 'seeker_dashboard.php';
+                    header("Location: admin/seeker_dashboard.php");
+                  }
+                } else {
+                  echo '
+                  <div class="alert border-0 bg-danger-subtle alert-dismissible fade show">
+                  <div class="d-flex align-items-center">
+                    <div class="text-danger">Problem Login</div>
+                  </div>
+                  </div>
+                  ';
+                }
+              }
+              ?>
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="password" name="password" required>
     <br><br>
 
-    <button type="submit">Login</button>
+    <button type="submit" name="login">Login</button>
 
 </form>
 

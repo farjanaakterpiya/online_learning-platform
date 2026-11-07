@@ -94,35 +94,50 @@
 
 <body>
 
-<?php include 'sidbar.php';?>
+<!-- <?php include 'sidbar.php';?> -->
+
+<div class="sidebar">
+
+    <h2>LearnHub</h2>
+
+    <a href="instructor_dashboard.php">Dashboard</a>
+    <a href="my_courses.php">My Courses</a>
+    <a href="add_course.php">Add Course</a>
+    <a href="lessons.php">Lessons</a>
+    <a href="students.php">My Students</a>
+    <a href="quiz.php">Quizzes</a>
+    <a href="profile.php">My Profile</a>
+    <a href="logout.php">Logout</a>
+
+</div>
 
 <div class="main">
 
     <div class="header">
-        <h2>Admin Dashboard</h2>
-        <p>Welcome to Online Learning Platform!</p>
+        <h2>admin Dashboard</h2>
+        <p>Welcome, to online learning platform</p>
     </div>
 
     <div class="cards">
 
         <div class="card">
+            <h3>My Courses</h3>
+            <h1>8</h1>
+        </div>
+
+        <div class="card">
             <h3>Total Students</h3>
-            <h1>250</h1>
+            <h1>120</h1>
         </div>
 
         <div class="card">
-            <h3>Total Instructors</h3>
-            <h1>25</h1>
+            <h3>Total Lessons</h3>
+            <h1>35</h1>
         </div>
 
         <div class="card">
-            <h3>Total Courses</h3>
-            <h1>40</h1>
-        </div>
-
-        <div class="card">
-            <h3>Total Enrollments</h3>
-            <h1>180</h1>
+            <h3>Total Quizzes</h3>
+            <h1>12</h1>
         </div>
 
     </div>
