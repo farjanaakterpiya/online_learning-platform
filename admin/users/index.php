@@ -1,11 +1,11 @@
-<?php include_once("db_config.php"); ?>
+<?php include_once("./db_config.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users - LearnHub</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <div class="admin-layout">
@@ -23,7 +23,7 @@
             <a class="btn" href="user_add.php">+ Add User</a>
         </div>
         <?php 
-           $rawData =  $conn->query("SELECT * FROM students"); ?>
+           $rawData =  $conn->query("SELECT * FROM users"); ?>
 
         <table border="1" style="border-collapse: collapse;">
         <tr>

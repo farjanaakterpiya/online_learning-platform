@@ -24,7 +24,7 @@ if (!isset($_SESSION['email']) || $_SESSION['role'] != 'admin') {
 
         <ul>
             <li><a href="admin-dashboard.php">Dashboard</a></li>
-            <li><a href="#">Users</a></li>
+            <li><a href="./users/index.php">Users</a></li>
             <li><a href="#">Categories</a></li>
             <li><a href="#">Courses</a></li>
             <li><a href="#">Sections & Lessons</a></li>
