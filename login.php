@@ -1,6 +1,71 @@
 <?php
-session_start();
-include 'db_config.php';
+require_once "auth.php";
+require_once "db_config.php";
+
+$errorMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
+
+    if (!verifyCsrfToken($_POST['csrf_token'] ?? null)) {
+        $errorMessage = "The form expired. Please try again.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) || !is_string($password) || $password === '') {
+        $errorMessage = "Please enter a valid email and password.";
+    } else {
+        $stmt = $conn->prepare("SELECT id, name, email, password, role FROM users WHERE email = ? AND status = 'active' LIMIT 1");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $user = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+
+        $passwordMatches = false;
+        $legacyPassword = false;
+
+        if ($user) {
+            $passwordMatches = password_verify($password, $user['password']);
+
+            // Older demo accounts in the supplied SQL file use SHA1 passwords.
+            if (!$passwordMatches && hash_equals($user['password'], sha1($password))) {
+                $passwordMatches = true;
+                $legacyPassword = true;
+            }
+        }
+
+        if ($passwordMatches) {
+            if ($legacyPassword) {
+                $newPasswordHash = password_hash($password, PASSWORD_DEFAULT);
+                $update = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
+                $update->bind_param("si", $newPasswordHash, $user['id']);
+                $update->execute();
+                $update->close();
+            }
+
+            session_regenerate_id(true);
+            $_SESSION['user_id'] = (int) $user['id'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['name'] = $user['name'] !== '' ? $user['name'] : $user['email'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+
+            $dashboards = [
+                'admin' => 'admin/admin-dashboard.php',
+                'instructor' => 'admin/instructor-dashboard.php',
+                'student' => 'admin/student-dashboard.php',
+            ];
+
+            if (isset($dashboards[$user['role']])) {
+                header("Location: " . $dashboards[$user['role']]);
+                exit;
+            }
+
+            session_unset();
+            session_destroy();
+        }
+
+        $errorMessage = "Email or password is incorrect, or the account is inactive.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,67 +74,28 @@ include 'db_config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnHub - Login</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/app.js" defer></script>
 </head>
 <body>
-
-<div class="login-container">
+<main class="login-container">
     <h2>Learn<span>Hub</span></h2>
     <h3>Login to Your Account</h3>
 
-    <form action="" method="POST">
-        <input type="email" name="email" id="email" placeholder="Enter Email" required>
+    <?php if ($errorMessage !== ''): ?>
+        <p class="error" role="alert"><?php echo escapeHtml($errorMessage); ?></p>
+    <?php endif; ?>
 
-        <input type="password" name="password" id="password" placeholder="Enter Password" required>
+    <form action="login.php" method="POST">
+        <input type="hidden" name="csrf_token" value="<?php echo escapeHtml(csrfToken()); ?>">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter email" autocomplete="username" required>
 
-        <p id="error" class="error"></p>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
 
-        <button type="submit" name="login" class="btn">Login</button>
-        <!-- <input type="button" value="sumbit" name="login"> -->
+        <button type="submit" class="btn">Login</button>
     </form>
 
-    <?php
-    if (isset($_POST['login'])) {
-        extract($_POST);
-        $password = sha1($password);
-
-        // $result = $conn->query("SELECT * FROM users WHERE email = '$email' AND password = '$password' AND role = '$role'");
-        $result = $conn->query("SELECT * FROM users WHERE email = '$email' AND password = '$password'");
-
-        $row = $result->fetch_assoc();
-
-        if ($result->num_rows > 0) {
-            $_SESSION['email'] = $email;
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['role'] = $row['role'];
-
-            if ($row['role'] == 'admin') {
-                $_SESSION['url'] = 'admin_dashboard.php';
-                header("Location: admin/admin-dashboard.php");
-                exit;
-            } else if ($row['role'] == 'instructor') {
-                $_SESSION['url'] = 'instructor_dashboard.php';
-                header("Location: admin/instructor-dashboard.php");
-                exit;
-            } else if ($row['role'] == 'student') {
-                $_SESSION['url'] = 'student_dashboard.php';
-                header("Location: admin/student-dashboard.php");
-                exit;
-            }
-        } else {
-            echo '
-            <div class="alert border-0 bg-danger-subtle alert-dismissible fade show">
-                <div class="d-flex align-items-center">
-                    <div class="text-danger">Problem Login</div>
-                </div>
-            </div>
-            ';
-        }
-    }
-    ?>
-
     <a href="index.html">Back to Home</a>
-</div>
-
+</main>
 </body>
 </html>
