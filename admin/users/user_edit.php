@@ -1,4 +1,4 @@
-<?php include_once("./db_config.php");  // Database Connection ?>
+<?php include_once("../../db_config.php");  // Database Connection ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
