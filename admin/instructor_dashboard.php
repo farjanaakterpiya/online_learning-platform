@@ -1,8 +1,8 @@
-<?php include_once("./db_config.php"); ?>
+<?php include_once("../db_config.php"); ?>
 <?php
 session_start();
 
-if (!isset($_SESSION['email']) || $_SESSION['role'] != 'admin') {
+if (!isset($_SESSION['email']) || $_SESSION['role'] != 'instructor') {
     header("Location: ../login.php");
     exit;
 }

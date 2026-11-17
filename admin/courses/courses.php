@@ -1,4 +1,4 @@
-<?php include_once("./dbconfig.php"); ?>
+<?php include_once("../dbconfig.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +17,7 @@
     <table border="1" cellpadding="8" cellspacing="0">
     <tr>
         <th>ID</th>
-        <th>Title</th>
+        <th>Name</th>
         <th>Description</th>
         <th>Price</th>
         <th>Instructor</th>

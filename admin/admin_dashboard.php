@@ -8,6 +8,7 @@ if (!isset($_SESSION['email']) || $_SESSION['role'] != 'admin') {
 }
 include '../includes/dashboard_header.php';
 ?>
+
 <section class="welcome-row">
     <div>
         <span class="eyebrow">OVERVIEW</span>
