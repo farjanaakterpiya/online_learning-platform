@@ -1,5 +1,4 @@
-
-<?php include_once("./db_config.php"); ?>
+<?php include_once("../db_config.php"); ?>
 <?php
 session_start();
 
@@ -7,7 +6,7 @@ if (!isset($_SESSION['email']) || $_SESSION['role'] != 'admin') {
     header("Location: ../login.php");
     exit;
 }
-include '../includes/dashboard_header.php'; 
+include '../includes/dashboard_header.php';
 ?>
 <section class="welcome-row">
     <div>
