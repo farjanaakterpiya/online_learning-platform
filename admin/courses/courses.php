@@ -1,4 +1,4 @@
-<?php include_once("dbconfig.php"); ?>
+<?php include_once("./dbconfig.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

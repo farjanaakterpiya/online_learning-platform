@@ -1,5 +1,5 @@
 <?php 
-include_once("dbconfig.php");
+include_once("./dbconfig.php");
 
 $id = $_GET['id'];
 $result = $conn->query("SELECT * FROM courses WHERE id = $id");
