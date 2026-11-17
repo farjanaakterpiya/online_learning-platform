@@ -66,7 +66,7 @@
                     <label>Password</label><input type="password" name="password" placeholder="Enter your password" required>
                     <button class="btn btn-primary btn-full" type="submit" name="login">Log in</button>
                 </form>
-                <p class="auth-bottom">New to EduSpace? <a href="register.html">Create an account</a></p>
+                <p class="auth-bottom">New to EduSpace? <a href="register.php">Create an account</a></p>
             </section>
         </main>
         <script src="assets/js/app.js"></script>
