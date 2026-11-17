@@ -1,5 +1,5 @@
 
-<?php include_once("../db_config.php"); ?>
+<?php include_once("./db_config.php"); ?>
 <?php
 session_start();
 
