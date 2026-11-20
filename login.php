@@ -27,15 +27,16 @@ if (isset($_POST['login'])) {
             header("Location: admin/admin_dashboard.php");
             //exit;
         } else if ($row['role'] == 'instructor') {
-            $_SESSION['url'] = 'instructor_dashboard.php';
+            $_SESSION['url'] = 'admin/instructor_dashboard.php';
             header("Location: admin/instructor_dashboard.php");
             //exit;
         } else if ($row['role'] == 'student') {
-            $_SESSION['url'] = 'student_dashboard.php';
+            $_SESSION['url'] = 'admin/student_dashboard.php';
             header("Location: admin/student_dashboard.php");
             //exit;
         }
-    } else {
+     } 
+    else {
         echo '
             <div class="alert border-0 bg-danger-subtle alert-dismissible fade show">
                 <div class="d-flex align-items-center">
