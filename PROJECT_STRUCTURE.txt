@@ -1,0 +1,100 @@
+online_learning-platform/
+|-- admin/
+|   |-- admin_dashboard.php
+|   |-- instructor_dashboard.php
+|   `-- student_dashboard.php
+|-- assets/
+|   |-- css/
+|   |   |-- admin.css
+|   |   `-- style.css
+|   `-- js/
+|       `-- app.js
+|-- crud/
+|   |-- categories/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- certificates/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- course_reviews/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- course_sections/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- courses/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- enrollments/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- lessons/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- live_classes/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- payments/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- questions/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- quiz_attempts/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- quiz_options/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- quizzes/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   |-- users/
+|   |   |-- create.php
+|   |   |-- delete.php
+|   |   |-- edit.php
+|   |   `-- index.php
+|   `-- wishlists/
+|       |-- create.php
+|       |-- delete.php
+|       |-- edit.php
+|       `-- index.php
+|-- includes/
+|   |-- admin_sidebar.php
+|   |-- dashboard_footer.php
+|   |-- dashboard_header.php
+|   `-- dashboard_sidebar.php
+|-- db_config.php
+|-- index.html
+|-- login.php
+|-- logout.php
+|-- online_learning.sql
+|-- register.php
+|-- README.md
+`-- Online_Learning_Platform_proposal.pdf

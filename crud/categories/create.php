@@ -41,61 +41,7 @@ function make_slug($text) {
 <div class="dash-wrapper">
 
   <!-- ===================== SIDEBAR (Admin) ===================== -->
-  <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar">
-    <div class="offcanvas-body">
-      <div class="d-flex align-items-center justify-content-between">
-        <a href="../../index.html" class="sidebar-brand flex-grow-1"><span class="brand-icon"><i class="bi bi-mortarboard-fill"></i></span>EduSpace</a>
-        <button type="button" class="btn-close btn-close-white d-lg-none me-3" data-bs-dismiss="offcanvas" data-bs-target="#sidebar"></button>
-      </div>
-
-      <div class="sidebar-heading">Main</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../admin/admin_dashboard.php"><i class="bi bi-grid-1x2"></i> Dashboard</a></li>
-      </ul>
-
-      <div class="sidebar-heading">People</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../crud/users/index.php"><i class="bi bi-people"></i> Users</a></li>
-      </ul>
-
-      <div class="sidebar-heading">Catalog</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../crud/categories/index.php" class="active"><i class="bi bi-tags"></i> Categories</a></li>
-        <li><a href="../../admin/courses/courses.php"><i class="bi bi-journal-bookmark"></i> Courses</a></li>
-        <li><a href="../../crud/course_sections/index.php"><i class="bi bi-list-nested"></i> Sections</a></li>
-        <li><a href="../../crud/lessons/index.php"><i class="bi bi-play-circle"></i> Lessons</a></li>
-      </ul>
-
-      <div class="sidebar-heading">Learning</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../crud/enrollments/index.php"><i class="bi bi-person-check"></i> Enrollments</a></li>
-        <li><a href="../../crud/certificates/index.php"><i class="bi bi-award"></i> Certificates</a></li>
-        <li><a href="../../crud/course_reviews/index.php"><i class="bi bi-star"></i> Reviews</a></li>
-        <li><a href="../../crud/wishlists/index.php"><i class="bi bi-heart"></i> Wishlists</a></li>
-      </ul>
-
-      <div class="sidebar-heading">Assessment</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../crud/quizzes/index.php"><i class="bi bi-patch-question"></i> Quizzes</a></li>
-        <li><a href="../../crud/questions/index.php"><i class="bi bi-question-circle"></i> Questions</a></li>
-        <li><a href="../../crud/quiz_options/index.php"><i class="bi bi-ui-radios"></i> Quiz Options</a></li>
-        <li><a href="../../crud/quiz_attempts/index.php"><i class="bi bi-clipboard-check"></i> Quiz Attempts</a></li>
-      </ul>
-
-      <div class="sidebar-heading">Live & Billing</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../crud/live_classes/index.php"><i class="bi bi-camera-video"></i> Live Classes</a></li>
-        <li><a href="../../crud/payments/index.php"><i class="bi bi-receipt"></i> Payments</a></li>
-      </ul>
-
-      <div class="sidebar-heading">System</div>
-      <ul class="sidebar-nav">
-        <li><a href="../../logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
-      </ul>
-
-      <div class="sidebar-footer"></div>
-    </div>
-  </aside>
+  <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar"><?php include_once(__DIR__ . "/../../includes/admin_sidebar.php"); ?></aside>
 
   <!-- ===================== MAIN ===================== -->
   <div class="dash-main">

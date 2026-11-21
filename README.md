@@ -28,6 +28,55 @@ claim to reproduce SkillSet's private original database.
   Development Technologies   PHP, MySQL, HTML, CSS, JavaScript
   Reference Application      SkillSet -- Online Learning Platform
 
+## Folder Structure
+
+```text
+online_learning-platform/
+├── admin/
+│   ├── admin_dashboard.php
+│   ├── instructor_dashboard.php
+│   └── student_dashboard.php
+├── assets/
+│   ├── css/
+│   │   ├── admin.css
+│   │   └── style.css
+│   └── js/
+│       └── app.js
+├── crud/
+│   ├── categories/
+│   ├── certificates/
+│   ├── course_reviews/
+│   ├── course_sections/
+│   ├── courses/
+│   ├── enrollments/
+│   ├── lessons/
+│   ├── live_classes/
+│   ├── payments/
+│   ├── questions/
+│   ├── quiz_attempts/
+│   ├── quiz_options/
+│   ├── quizzes/
+│   ├── users/
+│   └── wishlists/
+├── includes/
+│   ├── admin_sidebar.php
+│   ├── dashboard_footer.php
+│   ├── dashboard_header.php
+│   └── dashboard_sidebar.php
+├── db_config.php
+├── index.html
+├── login.php
+├── logout.php
+├── online_learning.sql
+├── Online_Learning_Platform_proposal.pdf
+├── README.md
+├── PROJECT_STRUCTURE.txt
+└── register.php
+```
+
+Each directory under `crud/` contains `index.php`, `create.php`,
+`edit.php`, and `delete.php` for its corresponding database records.
+
 ## Main Objectives
 
 -   Provide a single platform for online learning.
