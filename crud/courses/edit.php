@@ -85,10 +85,10 @@ $categories = $conn->query("SELECT id, name FROM categories ORDER BY name");
 ?>
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Edit Course | EduSpace</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="../../assets/css/admin.css" rel="stylesheet"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Edit Course | EduSpace</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="../../assets/css/admin.css?v=3" rel="stylesheet"></head>
 <body class="dash-body"><div class="dash-wrapper">
   <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar"><?php include_once(__DIR__ . "/../../includes/admin_sidebar.php"); ?></aside>
-  <div class="dash-main"><header class="topbar"><button class="topbar-btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"><i class="bi bi-list"></i></button></header>
+  <div class="dash-main"><?php include __DIR__ . '/../../includes/app_topbar.php'; ?>
   <main class="dash-content">
     <div class="d-flex justify-content-between align-items-center mb-4"><div><h1>Edit Course</h1><p class="text-muted mb-0">Update course details.</p></div><a href="index.php" class="btn btn-light border">Back to courses</a></div>
     <?php if ($error !== ''): ?><div class="alert alert-danger"><?php echo course_escape($error); ?></div><?php elseif ($success): ?><div class="alert alert-success">Course updated successfully.</div><?php endif; ?>

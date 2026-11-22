@@ -1,5 +1,15 @@
--- Run this ONCE in phpMyAdmin (database: online_learning) if you already imported online_learning.sql earlier.
--- It adds the table that tracks which lessons a student has completed.
+-- Run this in phpMyAdmin (database: online_learning) to add tables missing from an older import.
+
+CREATE TABLE IF NOT EXISTS `course_reviews` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `enrollment_id` bigint UNSIGNED NOT NULL,
+  `rating` tinyint UNSIGNED NOT NULL,
+  `review_text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `enrollment_id` (`enrollment_id`),
+  CONSTRAINT `fk_reviews_enrollment` FOREIGN KEY (`enrollment_id`) REFERENCES `enrollments` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `lesson_progress` (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,

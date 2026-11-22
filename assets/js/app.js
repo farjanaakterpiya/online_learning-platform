@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    var mobileNav = window.matchMedia('(max-width: 800px)');
+    var restoreSidebar = mobileNav.matches && sessionStorage.getItem('eduspaceSidebarOpen') === 'true';
+    sessionStorage.removeItem('eduspaceSidebarOpen');
+
     function setSidebarOpen(isOpen) {
         document.body.classList.toggle('sidebar-open', isOpen);
         sidebarToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -35,7 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    if (window.matchMedia('(max-width: 800px)').matches) {
-        setSidebarOpen(true);
-    }
+    setSidebarOpen(restoreSidebar);
+    dashboardSidebar.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (mobileNav.matches && /\/(admin|crud|student|instructor)\//.test(new URL(link.href).pathname)) {
+                sessionStorage.setItem('eduspaceSidebarOpen', 'true');
+            }
+        });
+    });
 });

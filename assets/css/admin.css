@@ -1,3 +1,5 @@
+@import url("app-topbar.css?v=1");
+
 :root {
   --admin-bg: #f5f6fa;
   --admin-sidebar: #171a2b;
@@ -39,6 +41,9 @@ body.dash-body {
 }
 
 .sidebar .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   padding: 22px 16px;
 }
 
@@ -94,6 +99,12 @@ body.dash-body {
 .sidebar-nav a.active {
   color: #fff;
   background: rgba(101, 88, 211, 0.22);
+}
+
+.sidebar-nav a.active {
+  background: linear-gradient(90deg, rgba(101, 88, 211, 0.36), rgba(101, 88, 211, 0.12));
+  box-shadow: inset 3px 0 #8e84ff;
+  font-weight: 700;
 }
 
 .sidebar-nav a {
@@ -284,5 +295,11 @@ body.dash-body {
 
   .dash-main {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar.offcanvas-lg {
+    background-color: var(--admin-sidebar) !important;
   }
 }

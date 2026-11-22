@@ -31,7 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = 'Enter a valid email address.';
     } elseif (mb_strlen($phone) > 30) {
         $error = 'Phone number must be 30 characters or fewer.';
-    } elseif ($newPassword !== '' && !hash_equals((string) $profile['password'], sha1($currentPassword))) {
+    } elseif (
+        $newPassword !== ''
+        && !password_verify($currentPassword, (string) $profile['password'])
+        && !hash_equals((string) $profile['password'], sha1($currentPassword))
+    ) {
         $error = 'Current password is incorrect.';
     } elseif ($newPassword !== '' && strlen($newPassword) < 8) {
         $error = 'New password must be at least 8 characters.';
@@ -43,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 db_run(
                     "UPDATE users SET name=?, email=?, phone=?, password=? WHERE id=? AND role='student'",
                     'ssssi',
-                    [$name, $email, $phone === '' ? null : $phone, sha1($newPassword), $me['id']]
+                    [$name, $email, $phone === '' ? null : $phone, password_hash($newPassword, PASSWORD_DEFAULT), $me['id']]
                 );
             } else {
                 db_run(

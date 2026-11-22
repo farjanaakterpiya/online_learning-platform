@@ -14,10 +14,23 @@ $countCourses = $stat("SELECT COUNT(*) t FROM courses WHERE status='published'")
 $countInstructors = $stat("SELECT COUNT(*) t FROM users WHERE role='instructor' AND status='active'");
 $countStudents = $stat("SELECT COUNT(*) t FROM users WHERE role='student' AND status='active'");
 
+$reviewTable = $conn->query(
+    "SELECT COUNT(*) AS table_exists
+     FROM information_schema.tables
+     WHERE table_schema = DATABASE() AND table_name = 'course_reviews'"
+);
+$hasReviews = (int) $reviewTable->fetch_assoc()['table_exists'] > 0;
+if (!$hasReviews) {
+    error_log('The course_reviews table is missing. Run update_db.sql to enable course reviews.');
+}
+$ratingExpression = $hasReviews
+    ? "(SELECT AVG(r.rating) FROM course_reviews r JOIN enrollments e ON e.id=r.enrollment_id WHERE e.course_id=c.id) AS rating"
+    : "NULL AS rating";
+
 $courses = $conn->query(
     "SELECT c.id, c.title, c.short_description, c.price, cat.name AS category,
             (SELECT COUNT(*) FROM lessons l JOIN course_sections s ON s.id=l.section_id WHERE s.course_id=c.id) AS lessons,
-            (SELECT AVG(r.rating) FROM course_reviews r JOIN enrollments e ON e.id=r.enrollment_id WHERE e.course_id=c.id) AS rating
+            $ratingExpression
      FROM courses c JOIN categories cat ON cat.id=c.category_id
      WHERE c.status='published' ORDER BY c.created_at DESC LIMIT 6"
 );

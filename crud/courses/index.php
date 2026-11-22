@@ -36,13 +36,13 @@ $courses = $conn->query($query . " ORDER BY c.id DESC");
   <title>Courses | EduSpace</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link href="../../assets/css/admin.css" rel="stylesheet">
+  <link href="../../assets/css/admin.css?v=3" rel="stylesheet">
 </head>
 <body class="dash-body">
 <div class="dash-wrapper">
   <aside class="sidebar offcanvas-lg offcanvas-start" tabindex="-1" id="sidebar"><?php include_once(__DIR__ . "/../../includes/admin_sidebar.php"); ?></aside>
   <div class="dash-main">
-    <header class="topbar"><button class="topbar-btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"><i class="bi bi-list"></i></button></header>
+    <?php include __DIR__ . '/../../includes/app_topbar.php'; ?>
     <main class="dash-content">
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4 page-title">
         <div><h1>Courses</h1><p class="text-muted mb-0">Manage <?php echo $role === 'admin' ? 'course catalog entries.' : 'your courses.'; ?></p></div>

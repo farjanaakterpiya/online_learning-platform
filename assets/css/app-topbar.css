@@ -1,0 +1,177 @@
+.app-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    display: flex;
+    height: 76px;
+    min-height: 76px;
+    align-items: center;
+    gap: 16px;
+    padding: 0 28px;
+    border-bottom: 1px solid #e8e9f1;
+    background: #fff;
+}
+
+.app-topbar-menu {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e8e9f1;
+    border-radius: 9px;
+    color: #20243a;
+    background: #f4f4f9;
+    font-size: 20px;
+}
+
+.app-topbar-menu:hover {
+    color: #5145bd;
+    background: #eeecff;
+}
+
+.app-topbar-menu--admin {
+    display: inline-flex;
+}
+
+.app-topbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #20243a;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-topbar-brand:hover {
+    color: #5145bd;
+}
+
+.app-topbar-mark {
+    display: inline-grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 11px;
+    color: #fff;
+    background: #6558d3;
+    font-size: 17px;
+}
+
+.app-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: auto;
+}
+
+.app-topbar-website,
+.app-topbar-logout {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 11px;
+    border-radius: 9px;
+    color: #62667b;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.app-topbar-website {
+    background: #f4f4f9;
+}
+
+.app-topbar-website:hover,
+.app-topbar-logout:hover {
+    color: #5145bd;
+    background: #eeecff;
+}
+
+.app-topbar-profile {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+
+.app-topbar-avatar {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #6558d3;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.app-topbar-identity {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    line-height: 1.25;
+}
+
+.app-topbar-identity strong {
+    overflow: hidden;
+    color: #20243a;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-topbar-identity small {
+    color: #73788c;
+    font-size: 10px;
+}
+
+@media (min-width: 992px) {
+    .app-topbar-menu--admin {
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-topbar {
+        gap: 10px;
+        padding: 0 14px;
+    }
+
+    .app-topbar-brand {
+        gap: 7px;
+        font-size: 16px;
+    }
+
+    .app-topbar-mark {
+        width: 32px;
+        height: 32px;
+    }
+
+    .app-topbar-actions {
+        gap: 6px;
+    }
+
+    .app-topbar-website span,
+    .app-topbar-identity {
+        display: none;
+    }
+
+    .app-topbar-website,
+    .app-topbar-logout {
+        width: 36px;
+        padding: 0;
+    }
+
+    .app-topbar-logout span {
+        display: none;
+    }
+}

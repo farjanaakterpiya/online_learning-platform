@@ -31,7 +31,7 @@ function sqlv($conn, $v, $nullable = false, $default = null) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link href="../../assets/css/admin.css" rel="stylesheet">
+  <link href="../../assets/css/admin.css?v=3" rel="stylesheet">
 </head>
 <body class="dash-body">
 <div class="dash-wrapper">
@@ -43,29 +43,7 @@ function sqlv($conn, $v, $nullable = false, $default = null) {
   <div class="dash-main">
 
     <!-- Topbar -->
-    <header class="topbar">
-      <button class="topbar-btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"><i class="bi bi-list"></i></button>
-      <div class="ms-auto d-flex align-items-center gap-2">
-        <a href="../../index.html" class="topbar-btn" title="View Website"><i class="bi bi-globe2"></i></a>
-
-        <!-- User menu -->
-        <div class="dropdown">
-          <a href="#" class="d-flex align-items-center gap-2 text-reset ms-1" data-bs-toggle="dropdown">
-            <span class="avatar">AD</span>
-            <span class="d-none d-sm-block lh-sm">
-              <span class="fw-bold d-block">Admin</span>
-              <small class="text-muted">Administrator</small>
-            </span>
-            <i class="bi bi-chevron-down small text-muted d-none d-sm-block"></i>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end border-0 shadow rounded-4 p-2">
-            <li><a class="dropdown-item rounded-3" href="../../crud/users/index.php"><i class="bi bi-person me-2"></i>Users</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item rounded-3 text-danger" href="../../logout.php"><i class="bi bi-box-arrow-left me-2"></i>Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </header>
+    <?php include __DIR__ . '/../../includes/app_topbar.php'; ?>
 
     <!-- Content -->
     <main class="dash-content">
